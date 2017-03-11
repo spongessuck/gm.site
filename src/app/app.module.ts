@@ -11,6 +11,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { MenuComponent } from './menu/menu.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AboutComponent } from './about/about.component';
+import { NgSpinKitModule } from 'ng-spin-kit';
+import { ApiService } from './api.service';
 
 @NgModule({
   declarations: [
@@ -24,9 +26,10 @@ import { AboutComponent } from './about/about.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    NgSpinKitModule
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

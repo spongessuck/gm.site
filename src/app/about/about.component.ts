@@ -1,4 +1,6 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
+import { ApiService } from '../api.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-about',
@@ -7,12 +9,18 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
 
-  @HostBinding('class.col')
-  isColumn = true;
+  data: Observable<any>;
 
-  constructor() { }
+  @HostBinding('class.col')
+  private _isColumn = true;
+
+  constructor(private api: ApiService) { }
 
   ngOnInit() {
+  }
+
+  loadData() {
+    this.data = this.api.getPosts();
   }
 
 }

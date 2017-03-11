@@ -1,5 +1,36 @@
 <div>
   <p>
-    My name is Greg, and I like new toys.
+    My name is Greg. This is my demo site.
   </p>
+  <p>
+    It runs on Angular, which is a pretty cool framework.
+  </p>
+  <div *ngIf="!data">
+    <p>
+      Click the button below to load up some demo data.
+    </p>
+    <button class="btn btn-secondary"
+            (click)="loadData()">
+      Load
+    </button>
+  </div>
+  <ng-template #loading>
+    <div *ngIf="data" class="d-flex align-items-center">
+      <span>
+        Loading demo data
+      </span>
+      <sk-wave class="ml-3"></sk-wave>
+    </div>
+  </ng-template>
+  <ng-container *ngIf="data | async; else loading; let $data">
+    <p>
+      These data are courtesy of <a href="https://jsonplaceholder.typicode.com/" target="_blank">https://jsonplaceholder.typicode.com/</a>.
+    </p>
+    <div *ngFor="let post of $data; let $last = last"
+         class="p-2"
+         [style.border-bottom]="last ? 'none' : 'solid #ccc 1px'">
+      <h5>{{post.title}}</h5>
+      <article>{{post.body}}</article>
+    </div>
+  </ng-container>
 </div>
